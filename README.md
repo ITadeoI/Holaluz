@@ -1,6 +1,8 @@
-Kata Holaluz - Algorithms, Miscellaneous & SuspiciousReadingDetector
+Kata Holaluz
 ===================
 <p align="center"><img src="https://www.marketingdirecto.com/wp-content/uploads/2019/04/holaluz-logo.jpg" width="600"></p>
+
+## Algorithms,Miscellaneous & SuspiciousReadingDetector
 
 ### System requirements
 
