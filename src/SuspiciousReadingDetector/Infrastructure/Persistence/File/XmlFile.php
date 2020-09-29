@@ -3,26 +3,16 @@
 namespace App\SuspiciousReadingDetector\Infrastructure\Persistence\File;
 
 
-use App\Shared\Infrastructure\Persistence\File\FileRepository;
-use App\SuspiciousReadingDetector\Domain\ClientReading\ClientReading;
-use App\SuspiciousReadingDetector\Domain\ClientReading\ClientReadingId;
-use App\SuspiciousReadingDetector\Domain\ClientReading\ClientReadingRepository;
+use App\Controller\File\SuspiciousReadingDetector\FileManage;
+use SimpleXMLElement;
 
-class XmlFile extends FileRepository implements ClientReadingRepository
+class XmlFile implements FileManage
 {
-    public function save(ClientReading $clientReading): void
+    public function loadFile(string $path, string $fileName): string
     {
-        //TODO: Implement save() method;
-    }
+        $data = new SimpleXMLElement($path . DIRECTORY_SEPARATOR . $fileName, 0 , true);
+        if (!$data) throw new \FileNotFoundException('Problems loading file in path: ' . $path . DIRECTORY_SEPARATOR . $fileName);
 
-    public function find(ClientReadingId $id): ?ClientReading
-    {
-        //TODO: Implement find() method;
+        return $data;
     }
-
-    public function delete(ClientReadingId $id): void
-    {
-        //TODO: Implement delete() method;
-    }
-
 }
