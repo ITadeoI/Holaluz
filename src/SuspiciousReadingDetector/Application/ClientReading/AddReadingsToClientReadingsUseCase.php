@@ -8,6 +8,7 @@ use App\SuspiciousReadingDetector\Domain\ClientReading\ClientReadingId;
 use App\SuspiciousReadingDetector\Domain\ClientReading\ClientReadingItem;
 use App\SuspiciousReadingDetector\Domain\ClientReading\ClientReadingRepository;
 use App\SuspiciousReadingDetector\Domain\Reading\ReadingId;
+use DomainException;
 
 class AddReadingsToClientReadingsUseCase
 {
@@ -25,7 +26,7 @@ class AddReadingsToClientReadingsUseCase
         $clientReading = $this->repository->find($clientReadingId);
 
         if ($clientReading == null) {
-            $clientReading = ClientReading::createEmpty($request->clientReadingId());
+            throw new DomainException('ClientReading not found');
         }
 
         $readingsIds = $request->readingsIds();

@@ -3,7 +3,6 @@ declare(strict_types = 1);
 
 namespace App\SuspiciousReadingDetector\Domain\ClientReading;
 
-use App\Domain\ClientReading\ClientReadingItem;
 
 class ClientReading
 {
@@ -33,9 +32,9 @@ class ClientReading
         $this->readings[$reading->readingId()->id()] = $reading;
     }
 
-    public function removeItem(ClientReadingItem $reading): void
+    public function removeReading(ClientReadingItem $reading): void
     {
-        unset($this->$reading[$reading->readingId()->id()]);
+        unset($this->readings[$reading->readingId()->id()]);
     }
 
     public function suspectedReading()

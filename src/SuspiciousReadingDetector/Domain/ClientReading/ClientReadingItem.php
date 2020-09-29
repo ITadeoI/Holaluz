@@ -1,37 +1,34 @@
 <?php
 
-namespace App\Domain\ClientReading;
+namespace App\SuspiciousReadingDetector\Domain\ClientReading;
 
 
-use App\SuspiciousReadingDetector\Domain\Reading\Reading;
 use App\SuspiciousReadingDetector\Domain\Reading\ReadingId;
 
 class ClientReadingItem
 {
+    private const ANNUAL_PERIOD = 12;
     private $readingId;
-    private $reading;
+    private $period;
 
-    public function __construct(ReadingId $readingId, Reading $reading)
+    public function __construct(ReadingId $readingId, int $period)
     {
         $this->readingId = $readingId;
-        $this->reading   = $reading;
+        $this->period = $period;
     }
 
     public static function create(ReadingId $readingId): ClientReadingItem
     {
-        return new self($readingId, []);
+        return new self($readingId, self::ANNUAL_PERIOD);
     }
 
     public function readingId()
     {
-        return $this->readingId->id();
+        return $this->readingId;
     }
 
-    public function reading()
+    public function period()
     {
-        return $this->reading;
+        return $this->period;
     }
-
-
-
 }
