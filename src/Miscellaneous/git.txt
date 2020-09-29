@@ -1,0 +1,14 @@
+1 - We decided to remove some creepy old section from our Legacy application, but we didn't know a few co-workers still used it. In the meantime, someone deployed a few fixes to master. Now you have a worried Product Owner telling you to recover this old code. How would you do this with git commands?
+
+    * git log --oneline --graph --decorate
+
+     then choose the previous branch what you want
+
+2 - A coworker convinced you of always using git from the console. You are making a commit and... Vim opens! The horror! You have written the commit message, but how do we save the file and exit Vim?
+
+    * :q ->  save data and exit
+      :q! -> discard data and exit
+
+3 - We have two co-workers who have a strong opinion about git, one is a Merge fan and the other is a Rebase evangelizer. What is your opinion about Rebase and Merge?
+
+    * Depends if you want to preserve the history and previous commits or not, you will use merge to keep and rebase to automerge but losing tracking

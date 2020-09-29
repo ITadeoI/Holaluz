@@ -1,3 +1,4 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+add_products_to_cart:
+  path: /api/v1/clientReading/{clientReadingId}/readings/
+  controller: App\Controller\Api\SuspiciousReaginDetector\ClientReading\AddReadingToClientReadingController.php
+  methods: POST

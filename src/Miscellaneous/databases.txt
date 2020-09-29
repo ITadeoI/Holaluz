@@ -1,0 +1,40 @@
+1 - We need to know the date of the maximum consumption for each address of our clients. Can you write a query that returns this information? You can use `clients_and_consumptions.sql` in order to build the table structure and minimal data. Use PostgreSQL preferably, and otherwise tell us what engine you have used.
+
+    SELECT cli.*, maximumByDate.date, MAX(maximumByDate.maximum_consumption_for_each_adress)
+      (SELECT con.date, SUM(con.consumption) as maximum_consumption_for_each_adress
+       FROM consumptions as con
+       WHERE cli.code = con.code
+       GROUP BY con.date) as maximumByDate
+    FROM clients as cli;
+
+2 - We have a massive PostgreSQL cluster with millions of rows in some tables. Suddenly, one query starts showing up in the Slow Query Log. Please describe the actions you would do in order to diagnose and optimise the query.
+
+    * Contains properly the columns needed to do the query and not more than needed.
+    * Revise tables and JOINS.
+    * Revise data types.
+    * Use limits
+    * Avoid use:
+        LIKE '%blabla%'
+        NULL,
+        ORDER BY (nested)
+    * Maybe restructure or duplicate fields in order to facilitate catch the data without big joins (you need to know what are you doing).
+
+3 - You are in a Christmas dinner and somehow, your brother-in-law says we have charged him twice. You know this is completely impossible because we use transactions in our system! Try to explain what a transaction is to someone non very technical in a few sentences.
+
+    It's impossible because there is a protocol called 3D security, which is in charge to link 3 diferents domians like persons which verify your transcation
+     1 person: You as a customer,
+     2 person: The Bank property of your money
+     3 person: The Platform in that case you are used internet?
+     All together are atomatly package, so I think is improbably thay charged you twice
+
+    * After answered him, probably I would kill my brother-in-law for asking me that kind of question in a Christmas dinner. I'm joking:P
+
+4 - We have a lot of activity in our databases so we have decided to implement master - slave replication in PostgreSQL. We also changed our code in order to write new records to the master and always read data from the slave. Luckily, the servers seem to be fine again in terms of CPU but we are discovering now we don't always get the latest written data. Why is this? How can we limit this effect?
+
+    * I don't know about that, I will reseach information on the Internet.
+
+5 - We just installed Redis and it is awesome! It is super fast and we can do lots of different operations with it so we have decided to load a lot of data into it. Suddenly, Redis becomes really slow and some keys are disappearing. What did we do wrong?
+
+    *  We are experiencing latency problems with Redis
+
+       redis-cli --latency -h `host` -p `port

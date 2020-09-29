@@ -1,0 +1,32 @@
+1 - Our CTO keeps saying sticky sessions are bad and they should not exist. But are they that bad? What are the effects of enabling / disabling them?
+
+    * We used to abuse them to store everything under them because it easy and less tedious than in Redis, for example
+    * Two parallel request happen, one will be blocked by backend the other can and will overwrite each others changes to the session data.
+
+2 - Your team is performing maintenance tasks in a PostgreSQL Cluster so it's necessary to put the website in maintenance mode. But Google keeps indexing the maintenance page and this is affecting our SEO. How can we avoid this situation?
+
+    * I didn't know the answer, but I found a solution [https://yoast.com/http-503-site-maintenance-seo/]
+
+3 - Our data scientists need to run a predictive model for each of our ~200.000 customers, and each one takes about 40 seconds to finish. How could this be handled in order to have the results in a few hours?
+
+    * We ca paralyzed using queue and server cache like Redis.
+
+4 - A DevOps Engineer in the team keeps saying we need to start applying IAM roles to our EC2 instances in AWS. Do you know what this is and what can it be used for?
+
+    * IAM is like roles to a group of persons to specificate what can do and can't using Elastic Cloud, an Amazon's services
+
+5 - We have started using Amazon SQS which is an at-least-once delivery queue system. I did not want to pick the next ticket in the Backlog as it said we need to implement message deduping. Why do we need this?
+
+    5.1 - Do you know what this is?
+
+        * I can't used yet, but I used rabbitmq, Amazon Simple Queue Service seems to be similar to Rabbitmq.
+
+    5.2 - How would you implement such feature?
+
+        * With events?, I don't know, I would read the documentation but never avoid that task.
+
+    5.3 - Why do we need this?
+
+        *  It's a system of queue which should be triggered by events for example:
+
+            A new client is sign up in our web application and we persisted in our DB, we can tell SQS (if it's like Rabbimq) send him a virtual gif, that helps to uncouple our code.
